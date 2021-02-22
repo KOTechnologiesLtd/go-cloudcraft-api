@@ -6,19 +6,18 @@ import (
 	"github.com/KOTechnologiesLtd/go-cloudcraft-api"
 )
 
-
 func main() {
 
-	client := cloudcraft.NewClient("APIKEY", "https://api.cloudcraft.co")
+	client := cloudcraft.NewClient("APIKEY", "https://api.cloudcraft.co", 3)
 	cfurl := client.GetBaseURL()
 
 	//Create a CloudCraft AWS integration
 	cloudcraftAwsIntegrationname := "AWSIntegration"
 	roleArn := "YOURAWSROLEARN"
-	newAccInfo := cloudcraft.AccountAwsInfo{Name: &cloudcraftAwsIntegrationname, RoleArn: &roleArn}
+	newAccInfo := cloudcraft.AccountIntegrationAws{Name: &cloudcraftAwsIntegrationname, RoleArn: &roleArn}
 
 	log.Printf("CloudCraft Base URL %s\n", cfurl)
-	errNewAcc := client.AccountAwsCreate(&newAccInfo)
+	errNewAcc := client.AccountIntegrationAwsCreate(&newAccInfo)
 	{
 		if errNewAcc != nil {
 			log.Fatal(errNewAcc)
@@ -29,7 +28,7 @@ func main() {
 	log.Printf("Integration Name%s", *newAccInfo.Name)
 
 	//Get a CloudCraft AWS integration
-	Info, err := client.GetAccountAwsInfo(*newAccInfo.ID)
+	Info, err := client.AccountIntegrationAws(*newAccInfo.ID)
 	{
 		if err != nil {
 			log.Fatal(err)
@@ -40,7 +39,7 @@ func main() {
 	log.Printf("ID - %s, Name - %s", ID, Name)
 
 	//Get all CloudCraft AWS integrations
-	accounts, err := client.AccountsAwsList()
+	accounts, err := client.AccountIntegrationsAllAws()
 	{
 		if err != nil {
 			log.Fatal(err)
@@ -60,8 +59,8 @@ func main() {
 	updID := *newAccInfo.ID
 	updname := "AWSIntegrationUpdate"
 
-	updAccInfo := cloudcraft.AccountAwsInfo{ID: &updID, Name: &updname, RoleArn: &roleArn}
-	errUpdAcc := client.AccountAwsUpdate(&updAccInfo)
+	updAccInfo := cloudcraft.AccountIntegrationAws{ID: &updID, Name: &updname, RoleArn: &roleArn}
+	errUpdAcc := client.AccountIntegrationAwsUpdate(&updAccInfo)
 	{
 		if errUpdAcc != nil {
 			log.Fatal(errUpdAcc)
@@ -72,7 +71,7 @@ func main() {
 	log.Printf("Integration Name %s", *updAccInfo.Name)
 
 	//Delete a CloudCraft AWS integration
-	errDelAcc := client.AccountAwsDelete(&updAccInfo)
+	errDelAcc := client.AccountIntegrationAwsDelete(&updAccInfo)
 	{
 		if errDelAcc != nil {
 			log.Fatal(errDelAcc)
