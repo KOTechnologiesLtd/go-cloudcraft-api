@@ -14,6 +14,7 @@ https://www.cloudcraft.co/
 
 Presently support for:
  * Integrations with AWS
+ * Integrations with Azure
  * BluePrint Definition
 
 Please see the [examples](examples) directory for an example on how to use each.
