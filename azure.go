@@ -6,16 +6,16 @@ import (
 
 // AccountIntegrationAzure struct represents the data of an Account.
 type AccountIntegrationAzure struct {
-	ID		 		*string `json:"id,omitempty"`
-	Name 			*string `json:"name,omitempty"`
-	ApplicationId 	*string `json:"applicationId,omitempty"`
-	DirectoryId 	*string `json:"directoryId,omitempty"`
-	SubscriptionId 	*string `json:"subscriptionId,omitempty"`
-	ClientSecret 	*string `json:"clientSecret,omitempty"`
-	ExternalID 		*string `json:"externalId,omitempty"`
-	CreatedAt  		*string `json:"createdAt,omitempty"`
-	UpdatedAt  		*string `json:"updatedAt,omitempty"`
-	CreatorID  		*string `json:"CreatorId,omitempty"`
+    ID              *string `json:"id,omitempty"`
+    Name            *string `json:"name,omitempty"`
+    ApplicationId   *string `json:"applicationId,omitempty"`
+    DirectoryId     *string `json:"directoryId,omitempty"`
+    SubscriptionId  *string `json:"subscriptionId,omitempty"`
+    ClientSecret    *string `json:"clientSecret,omitempty"`
+    ExternalID      *string `json:"externalId,omitempty"`
+    CreatedAt       *string `json:"createdAt,omitempty"`
+    UpdatedAt       *string `json:"updatedAt,omitempty"`
+    CreatorID       *string `json:"CreatorId,omitempty"`
 }
 
 
