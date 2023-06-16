@@ -6,12 +6,12 @@ import (
 
 // AccountIntegrationAzure struct represents the data of an Account.
 type AccountIntegrationAzure struct {
-	ID         		*string `json:"id,omitempty"`
+	ID		 		*string `json:"id,omitempty"`
 	Name 			*string `json:"name,omitempty"`
-    ApplicationId 	*string `json:"applicationId,omitempty"`
-    DirectoryId 	*string `json:"directoryId,omitempty"`
-    SubscriptionId 	*string `json:"subscriptionId,omitempty"`
-    ClientSecret 	*string `json:"clientSecret,omitempty"`
+	ApplicationId 	*string `json:"applicationId,omitempty"`
+	DirectoryId 	*string `json:"directoryId,omitempty"`
+	SubscriptionId 	*string `json:"subscriptionId,omitempty"`
+	ClientSecret 	*string `json:"clientSecret,omitempty"`
 	ExternalID 		*string `json:"externalId,omitempty"`
 	CreatedAt  		*string `json:"createdAt,omitempty"`
 	UpdatedAt  		*string `json:"updatedAt,omitempty"`
@@ -34,7 +34,7 @@ func (client *Client) AccountIntegrationsAllAzure() ([]AccountIntegrationAzure, 
 		}
 	}
 	if len(out.AccountsAzureInfo) == 0 {
-		return nil, fmt.Errorf("Cloudcraft AWS Account Integrations not found or there are none")
+		return nil, fmt.Errorf("Cloudcraft Azure Account Integrations not found or there are none")
 	}
 	return out.AccountsAzureInfo, nil
 }
@@ -60,23 +60,23 @@ func (client *Client) AccountIntegrationAzure(AzureAccountId string) (AccountInt
 		}
 	}
 	if (AccountIntegrationAzure{}) == AccountIntegrationAzureItem {
-		return AccountIntegrationAzureItem, fmt.Errorf("Cloudcraft AWS Account Integration not found")
+		return AccountIntegrationAzureItem, fmt.Errorf("Cloudcraft Azure Account Integration not found")
 	}
 	return AccountIntegrationAzureItem, nil
 }
 
-// AccountIntegrationAzureCreate updates AWS Account Integration.
+// AccountIntegrationAzureCreate updates Azure Account Integration.
 func (client *Client) AccountIntegrationAzureCreate(acc *AccountIntegrationAzure) error {
 
 	return client.RequestResponse("POST", "/azure/account", acc, &acc)
 }
 
-// AccountIntegrationAzureUpdate updates AWS Account Integrations.
+// AccountIntegrationAzureUpdate updates Azure Account Integrations.
 func (client *Client) AccountIntegrationAzureUpdate(acc *AccountIntegrationAzure) error {
 	return client.RequestResponse("PUT", fmt.Sprintf("/azure/account/%v", *acc.ID), acc, &acc)
 }
 
-// AccountAzureDelAccountIntegrationAzureDeleteete updates AWS Account Integrations.
+// AccountAzureDelAccountIntegrationAzureDeleteete updates Azure Account Integrations.
 func (client *Client) AccountIntegrationAzureDelete(acc *AccountIntegrationAzure) error {
 	return client.RequestResponse("DELETE", fmt.Sprintf("/azure/account/%v", *acc.ID), nil, nil)
 }

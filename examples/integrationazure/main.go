@@ -5,7 +5,7 @@ import (
 	"github.com/KOTechnologiesLtd/go-cloudcraft-api"
 )
 
-func azure() {
+func main() {
 
 	client := cloudcraft.NewClient("", "https://api.cloudcraft.co", 3)
 	cfurl := client.GetBaseURL()
