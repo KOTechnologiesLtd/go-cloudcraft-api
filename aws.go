@@ -20,6 +20,13 @@ type AccountsAwsInfoResp struct {
 	AccountsAwsInfo []AccountIntegrationAws `json:"accounts,omitempty"`
 }
 
+// AccountIntegrationAwsIamRole struct represents the data of an IAM Parameters.
+type AccountIntegrationAwsIamParams struct {
+	AccountID     *string `json:"accountid,omitempty"`
+	ExternalID    *string `json:"externalid,omitempty"`
+	AwsConsoleUrl *string `json:"awsconsoleurl,omitempty"`
+}
+
 // AccountIntegrationsAllAws get and return the Aws Accounts.
 func (client *Client) AccountIntegrationsAllAws() ([]AccountIntegrationAws, error) {
 	var out AccountsAwsInfoResp
@@ -75,4 +82,16 @@ func (client *Client) AccountIntegrationAwsUpdate(acc *AccountIntegrationAws) er
 // AccountAwsDelAccountIntegrationAwsDeleteete updates AWS Account Integrations.
 func (client *Client) AccountIntegrationAwsDelete(acc *AccountIntegrationAws) error {
 	return client.RequestResponse("DELETE", fmt.Sprintf("/aws/account/%v", *acc.ID), nil, nil)
+}
+
+// AccountIntegrationsIamRole get and return the IAM Parameter information.
+func (client *Client) AccountIntegrationAwsIamParams() (AccountIntegrationAwsIamParams, error) {
+	var params AccountIntegrationAwsIamParams
+	err := client.RequestResponse("GET", "/aws/account/iamParameters", nil, &params)
+	{
+		if err != nil {
+			return AccountIntegrationAwsIamParams{}, err
+		}
+	}
+	return params, nil
 }
