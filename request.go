@@ -64,8 +64,7 @@ func (c *Client) RequestResponse(method, path string, reqbody, out interface{}) 
 			respbody = []byte{'{', '}'}
 		}
 
-		// If they don't care about the body, then we don't care to give them one,
-		// so bail out because we're done.
+		// IF there isn't a requirement to return a response body, then the code won't send it back.
 		if out == nil {
 			return nil
 		}

@@ -77,4 +77,15 @@ func main() {
 			log.Fatal(errDelAcc)
 		}
 	}
+
+	//Get CloudCraft AWS integration IAM Params
+	iamParams, err := client.AccountIntegrationAwsIamParams()
+	{
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	log.Printf("IAM Param AccountID %s", *iamParams.AccountID)
+	log.Printf("IAM Param ExternalID %s", *iamParams.ExternalID)
+	log.Printf("IAM Param AwsConsoleUrl %s", *iamParams.AwsConsoleUrl)
 }
