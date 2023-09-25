@@ -2,7 +2,8 @@ package main
 
 import (
 	"log"
-	"github.com/KOTechnologiesLtd/go-cloudcraft-api"
+
+	"github.com/KOTechnologiesLtd/go-cloudcraft-api/v2"
 )
 
 func main() {
@@ -11,18 +12,18 @@ func main() {
 	cfurl := client.GetBaseURL()
 
 	//Create a CloudCraft Azure integration
-	cloudcraftAzureIntegrationname  := "AzureIntegration"
-	applicationId 					:= ""
-	directoryId 					:= ""
-	subscriptionId 					:= ""
-	clientSecret 					:= ""
+	cloudcraftAzureIntegrationname := "AzureIntegration"
+	applicationId := ""
+	directoryId := ""
+	subscriptionId := ""
+	clientSecret := ""
 
 	newAccInfo := cloudcraft.AccountIntegrationAzure{
-		Name: &cloudcraftAzureIntegrationname, 
-		ApplicationId: &applicationId,
-		DirectoryId: &directoryId,
+		Name:           &cloudcraftAzureIntegrationname,
+		ApplicationId:  &applicationId,
+		DirectoryId:    &directoryId,
 		SubscriptionId: &subscriptionId,
-		ClientSecret: &clientSecret,
+		ClientSecret:   &clientSecret,
 	}
 
 	log.Printf("CloudCraft Base URL %s\n", cfurl)
@@ -69,12 +70,12 @@ func main() {
 	updname := "AzureIntegrationUpdate"
 
 	updAccInfo := cloudcraft.AccountIntegrationAzure{
-		ID: &updID, 
-		Name: &updname, 
-		ApplicationId: &applicationId,
-		DirectoryId: &directoryId,
+		ID:             &updID,
+		Name:           &updname,
+		ApplicationId:  &applicationId,
+		DirectoryId:    &directoryId,
 		SubscriptionId: &subscriptionId,
-		ClientSecret: &clientSecret,
+		ClientSecret:   &clientSecret,
 	}
 	errUpdAcc := client.AccountIntegrationAzureUpdate(&updAccInfo)
 	{

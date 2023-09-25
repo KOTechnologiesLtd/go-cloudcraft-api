@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/KOTechnologiesLtd/go-cloudcraft-api"
+	"github.com/KOTechnologiesLtd/go-cloudcraft-api/v2"
 )
 
 func main() {
