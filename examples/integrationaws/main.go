@@ -16,6 +16,10 @@ func main() {
 	roleArn := "YOURAWSROLEARN"
 	newAccInfo := cloudcraft.AccountIntegrationAws{Name: &cloudcraftAwsIntegrationname, RoleArn: &roleArn}
 
+	//Read Access Example
+	//	readaccess = append(readaccess, "team/GUID")
+	//	newAccInfo := cloudcraft.AccountIntegrationAws{Name: &cloudcraftAwsIntegrationname, RoleArn: &roleArn, ReadAccess: &readaccess}
+
 	log.Printf("CloudCraft Base URL %s\n", cfurl)
 	errNewAcc := client.AccountIntegrationAwsCreate(&newAccInfo)
 	{
