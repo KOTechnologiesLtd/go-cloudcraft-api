@@ -2,17 +2,20 @@ package cloudcraft
 
 import (
 	"fmt"
+	"reflect"
 )
 
 // AccountIntegrationAws struct represents the data of an Account.
 type AccountIntegrationAws struct {
-	ID         *string `json:"id,omitempty"`
-	Name       *string `json:"name,omitempty"`
-	RoleArn    *string `json:"roleArn,omitempty"`
-	ExternalID *string `json:"externalId,omitempty"`
-	CreatedAt  *string `json:"createdAt,omitempty"`
-	UpdatedAt  *string `json:"updatedAt,omitempty"`
-	CreatorID  *string `json:"CreatorId,omitempty"`
+	ID          *string   `json:"id,omitempty"`
+	Name        *string   `json:"name,omitempty"`
+	RoleArn     *string   `json:"roleArn,omitempty"`
+	ExternalID  *string   `json:"externalId,omitempty"`
+	ReadAccess  *[]string `json:"readAccess,omitempty"`
+	WriteAccess *[]string `json:"writeAccess,omitempty"`
+	CreatedAt   *string   `json:"createdAt,omitempty"`
+	UpdatedAt   *string   `json:"updatedAt,omitempty"`
+	CreatorID   *string   `json:"CreatorId,omitempty"`
 }
 
 // AccountsAwsInfoResp contains data of all Account.
@@ -62,7 +65,7 @@ func (client *Client) AccountIntegrationAws(AwsAccountId string) (AccountIntegra
 			return AccountIntegrationAwsItem, nil
 		}
 	}
-	if (AccountIntegrationAws{}) == AccountIntegrationAwsItem {
+	if reflect.DeepEqual(AccountIntegrationAwsItem, AccountIntegrationAws{}) {
 		return AccountIntegrationAwsItem, fmt.Errorf("Cloudcraft AWS Account Integration not found")
 	}
 	return AccountIntegrationAwsItem, nil
